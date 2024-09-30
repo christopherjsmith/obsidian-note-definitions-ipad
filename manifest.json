@@ -1,6 +1,6 @@
 {
-	"id": "note-definitions",
-	"name": "Note Definitions",
+	"id": "note-definitions-test",
+	"name": "Note Definitions - Auto Plurals RC",
 	"version": "0.25.2",
 	"minAppVersion": "1.5.12",
 	"description": "Personal dictionary for your notes",
