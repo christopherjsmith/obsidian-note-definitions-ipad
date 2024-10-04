@@ -2,9 +2,10 @@ import { App, Notice } from "obsidian";
 import { getSettings } from "src/settings";
 import { logError, logWarn } from "src/util/log";
 import { getDefFileManager } from "./def-file-manager";
-import { DefFileType, FileParser } from "./file-parser";
 import { FrontmatterBuilder } from "./fm-builder";
 import { Definition, FilePosition } from "./model";
+import { DefFileType } from "./settings/definition-settings";
+import { CreateDefFileParser } from "./file-parsers/def-file-parser-utils";
 
 
 export class DefFileUpdater {
@@ -34,7 +35,12 @@ export class DefFileUpdater {
 		const file = def.file;
 		const fileContent = await this.app.vault.read(file);
 
-		const fileParser = new FileParser(this.app, file);
+		const fileParser = CreateDefFileParser(this.app, file);
+		if (!fileParser) {
+			logError("Unknown file formatting, cannot edit");
+			return;
+		}
+
 		const defs = await fileParser.parseFile(fileContent);
 		const lines = fileContent.split("\n");
 

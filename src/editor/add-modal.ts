@@ -1,8 +1,7 @@
 import { App, DropdownComponent, Modal, Notice, Setting } from "obsidian";
 import { getDefFileManager } from "src/core/def-file-manager";
 import { DefFileUpdater } from "src/core/def-file-updater";
-import { DefFileType } from "src/core/file-parser";
-
+import { DefFileType } from "src/core/settings/definition-settings";
 
 export class AddDefinitionModal {
 	app: App;

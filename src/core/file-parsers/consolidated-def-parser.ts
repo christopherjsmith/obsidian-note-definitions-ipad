@@ -1,12 +1,11 @@
 import { App, TFile } from "obsidian";
 import { DefFileParseConfig, getSettings } from "src/settings";
-import { DefFileType } from "./file-parser";
-import { Definition, FilePosition } from "./model";
+import { Definition, FilePosition } from "../model";
+import { DefFileType } from "../settings/definition-settings";
+import { DefParser } from "./def-parser";
 
 
-export class ConsolidatedDefParser {
-	app: App;
-	file: TFile;
+export class ConsolidatedDefParser extends DefParser {
 	defBuffer: {
 		word?: string;
 		aliases?: string[];
@@ -19,8 +18,8 @@ export class ConsolidatedDefParser {
 	currLine: number;
 
 	constructor(app: App, file: TFile) {
-		this.app = app;
-		this.file = file;
+		super(app, file, DefFileType.Consolidated);
+
 		this.defBuffer = {};
 		this.inDefinition = false;
 		this.definitions = [];

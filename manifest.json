@@ -1,6 +1,6 @@
 {
-	"id": "note-definitions",
-	"name": "Note Definitions",
+	"id": "note-definitions-multi",
+	"name": "Note Definitions Multi Folder",
 	"version": "0.25.2",
 	"minAppVersion": "1.5.12",
 	"description": "Personal dictionary for your notes",

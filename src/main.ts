@@ -15,7 +15,8 @@ import { AddDefinitionModal } from './editor/add-modal';
 import { initDefinitionModal } from './editor/mobile/definition-modal';
 import { FMSuggestModal } from './editor/frontmatter-suggest-modal';
 import { registerDefFile } from './editor/def-file-registration';
-import { DefFileType } from './core/file-parser';
+import { DefFileType } from './core/settings/definition-settings';
+import { initSettingsManager } from './core/settings/settings-manager';
 
 export default class NoteDefinition extends Plugin {
 	activeEditorExtensions: Extension[] = [];
@@ -33,6 +34,7 @@ export default class NoteDefinition extends Plugin {
 		initDefinitionModal(this.app);
 		this.defManager = initDefFileManager(this.app);
 		this.fileExplorerDeco = initFileExplorerDecoration(this.app);
+		initSettingsManager(this.app);
 		this.registerEditorExtension(this.activeEditorExtensions);
 		this.updateEditorExts();
 

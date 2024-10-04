@@ -4,8 +4,9 @@ import { DEFAULT_DEF_FOLDER } from "src/settings";
 import { normaliseWord } from "src/util/editor";
 import { logDebug, logWarn } from "src/util/log";
 import { useRetry } from "src/util/retry";
-import { DefFileType, FileParser } from "./file-parser";
 import { Definition } from "./model";
+import { DefFileType } from "./settings/definition-settings";
+import { CreateDefFileParser } from "./file-parsers/def-file-parser-utils";
 
 let defFileManager: DefManager;
 
@@ -272,9 +273,13 @@ export class DefManager {
 
 	private async parseFile(file: TFile): Promise<Definition[]> {
 		this.globalDefFiles.set(file.path, file);
-		let parser = new FileParser(this.app, file);
+		let parser = CreateDefFileParser(this.app, file);
+		if(!parser) {
+			return [];
+		}
+
 		const def = await parser.parseFile();
-		if (parser.defFileType === DefFileType.Consolidated) {
+		if (parser.FileType === DefFileType.Consolidated) {
 			this.consolidatedDefFiles.set(file.path, file);
 		}
 		return def;

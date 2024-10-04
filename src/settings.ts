@@ -1,6 +1,6 @@
 import { App, Modal, Notice, PluginSettingTab, Setting, setTooltip } from "obsidian";
-import { DefFileType } from "./core/file-parser";
 import NoteDefinition from "./main";
+import { DefFileType } from "./core/settings/definition-settings";
 
 export enum PopoverEventSettings {
 	Hover = "hover",

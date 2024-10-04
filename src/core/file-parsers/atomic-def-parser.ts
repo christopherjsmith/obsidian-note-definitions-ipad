@@ -1,15 +1,12 @@
 import { App, CachedMetadata, TFile } from "obsidian";
-import { DefFileType } from "./file-parser";
-import { Definition } from "./model";
+import { Definition } from "../model";
+import { DefFileType } from "../settings/definition-settings";
+import { DefParser } from "./def-parser";
 
 
-export class AtomicDefParser {
-	app: App;
-	file: TFile;
-
+export class AtomicDefParser extends DefParser {
 	constructor(app: App, file: TFile) {
-		this.app = app;
-		this.file = file;
+		super(app, file, DefFileType.Atomic);
 	}
 
 	async parseFile(fileContent?: string): Promise<Definition[]> {
