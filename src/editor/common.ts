@@ -10,6 +10,9 @@ export function getDecorationAttrs(phrase: string): { [key: string]: string } {
 	let attributes: { [key: string]: string } = {
 		def: phrase,
 	}
+
+	console.log("Lets decorate");
+
 	const settings = getSettings();
 	if (Platform.isMobile) {
 		attributes.onclick = triggerFunc;
